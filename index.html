@@ -826,6 +826,10 @@
     visibility: visible;
     pointer-events: auto;
   }
+  .success-popup,
+  .success-popup * {
+    cursor: auto !important;
+  }
   .success-popup-card {
     width: min(100%, 460px);
     background: #101010;
@@ -870,7 +874,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 14px 18px;
-    cursor: none;
+    cursor: auto !important;
   }
   .success-popup-close:hover {
     border-color: var(--red);
@@ -1318,19 +1322,31 @@
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
+  function setPopupCursorState(isOpen) {
+    if (window.matchMedia('(max-width: 900px)').matches) return;
+    document.body.style.cursor = isOpen ? 'auto' : 'none';
+    cursor.style.display = isOpen ? 'none' : 'block';
+    ring.style.display = isOpen ? 'none' : 'block';
+  }
+
   function openSuccessPopup() {
     successPopup.classList.add('show');
     successPopup.setAttribute('aria-hidden', 'false');
+    setPopupCursorState(true);
   }
 
   function closeSuccessPopup() {
     successPopup.classList.remove('show');
     successPopup.setAttribute('aria-hidden', 'true');
+    setPopupCursorState(false);
   }
 
   successPopupClose.addEventListener('click', closeSuccessPopup);
-  successPopup.addEventListener('click', (e) => {
-    if (e.target === successPopup) closeSuccessPopup();
+  successPopup.addEventListener('click', () => {
+    closeSuccessPopup();
+  });
+  document.querySelector('.success-popup-card').addEventListener('click', (e) => {
+    e.stopPropagation();
   });
 
   function handleSubmit(e) {
