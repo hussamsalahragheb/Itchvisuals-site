@@ -606,7 +606,8 @@
     .form-select,
     .form-textarea,
     .footer-copy,
-    .contact-note {
+    .contact-note,
+    .form-status {
       font-family: var(--body);
     }
 
@@ -869,6 +870,13 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
+    }
+
+    .form-status {
+      margin-top: 1rem;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(245,245,245,0.7);
     }
 
     footer {
@@ -1188,24 +1196,30 @@
         </div>
       </div>
       <div class="lead-form-right reveal reveal-delay-2">
-        <form onsubmit="handleSubmit(event)">
+        <form id="projectForm" action="https://formsubmit.co/Itchvisuals@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New project brief — itch VISUALS">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://hussamsalahragheb.github.io/Itchvisuals-site/?submitted=1#contact">
+          <input type="text" name="_honey" style="display:none">
+
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="fname">Full Name</label>
-              <input class="form-input" id="fname" type="text" placeholder="Your name" required>
+              <input class="form-input" id="fname" name="Full Name" type="text" placeholder="Your name" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="femail">Email</label>
-              <input class="form-input" id="femail" type="email" placeholder="you@company.com" required>
+              <input class="form-input" id="femail" name="Email" type="email" placeholder="you@company.com" required>
             </div>
           </div>
           <div class="form-group">
             <label class="form-label" for="fcompany">Company / Brand</label>
-            <input class="form-input" id="fcompany" type="text" placeholder="Your company name">
+            <input class="form-input" id="fcompany" name="Company / Brand" type="text" placeholder="Your company name">
           </div>
           <div class="form-group">
             <label class="form-label" for="fservice">Service Needed</label>
-            <select class="form-select" id="fservice">
+            <select class="form-select" id="fservice" name="Service Needed" required>
               <option value="" disabled selected>Select a service</option>
               <option>Brand Identity</option>
               <option>Performance Marketing Assets</option>
@@ -1218,7 +1232,7 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="fbudget">Project Budget</label>
-            <select class="form-select" id="fbudget">
+            <select class="form-select" id="fbudget" name="Project Budget" required>
               <option value="" disabled selected>Select a budget range</option>
               <option>$500 – $1,000</option>
               <option>$1,000 – $2,500</option>
@@ -1229,7 +1243,7 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="fmessage">Tell Us About Your Project</label>
-            <textarea class="form-textarea" id="fmessage" placeholder="Describe your project, goals, timeline…"></textarea>
+            <textarea class="form-textarea" id="fmessage" name="Project Details" placeholder="Describe your project, goals, timeline…" required></textarea>
           </div>
           <button type="submit" class="btn-submit">
             <span id="submitText">
@@ -1237,6 +1251,7 @@
               <span>→</span>
             </span>
           </button>
+          <p class="form-status" id="formStatus">After the first submission, check Itchvisuals@gmail.com and confirm the FormSubmit verification email once. After that, all leads will arrive in your inbox.</p>
         </form>
       </div>
     </div>
@@ -1298,17 +1313,23 @@
 
     reveals.forEach((el) => observer.observe(el));
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = document.querySelector('.btn-submit');
-      const txt = document.getElementById('submitText');
-      btn.style.background = 'var(--yellow)';
-      txt.innerHTML = '<span>✓ Message Sent!</span>';
-      setTimeout(() => {
-        btn.style.background = '';
-        txt.innerHTML = '<span>Send Project Brief</span><span>→</span>';
-        e.target.reset();
-      }, 3000);
+    const form = document.getElementById('projectForm');
+    const submitText = document.getElementById('submitText');
+    if (form) {
+      form.addEventListener('submit', () => {
+        submitText.innerHTML = '<span>Sending...</span>';
+      });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const formStatus = document.getElementById('formStatus');
+    if (params.get('submitted') === '1' && formStatus) {
+      formStatus.textContent = 'Project brief sent. Check Itchvisuals@gmail.com — if this is the first time, confirm the verification email from FormSubmit so future leads arrive normally.';
+      formStatus.style.color = 'var(--yellow)';
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     window.addEventListener('load', () => {
