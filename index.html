@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>itch VISUALS — اتش فيجوالز</title>
-<link rel="icon" href="logo.jpeg">
-<link rel="apple-touch-icon" href="logo.jpeg">
+<link rel="icon" href="new-logo.png">
+<link rel="apple-touch-icon" href="new-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 4vw;
-    height: 88px;
+    height: 104px;
     background: rgba(8,8,8,0.92);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -128,7 +128,7 @@
   .nav-logo-image {
     display: block;
     width: auto;
-    height: 54px;
+    height: 90px;
     object-fit: contain;
   }
   .nav-links {
@@ -195,6 +195,16 @@
     inset: 0;
     background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(255,61,0,0.07) 0%, transparent 70%);
     pointer-events: none;
+  }
+  .hero-logo {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-logo img {
+    width: clamp(300px, 45vw, 750px);
+    height: auto;
+    display: block;
   }
   .hero-eyebrow {
     font-family: var(--mono);
@@ -885,7 +895,7 @@
   .footer-logo-image {
     display: block;
     width: auto;
-    height: 60px;
+    height: 90px;
     object-fit: contain;
   }
   .footer-copy {
@@ -930,8 +940,10 @@
     .testimonials-grid { grid-template-columns: 1fr; }
     .lead-form-grid { grid-template-columns: 1fr; gap: 3rem; }
     .nav-links { display: none; }
-    nav { height: 80px; }
-    .nav-logo-image { height: 46px; }
+    nav { height: 90px; }
+    .nav-logo-image { height: 64px; }
+    .hero-logo img { width: clamp(260px, 70vw, 520px); }
+    .footer-logo-image { height: 68px; }
   }
   @media (max-width: 600px) {
     .process-grid { grid-template-columns: 1fr; }
@@ -939,7 +951,6 @@
     .hero-stats { gap: 2rem; }
     .services-header { flex-direction: column; align-items: flex-start; }
     footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .footer-logo-image { height: 52px; }
     .success-popup-card { padding: 1.5rem; }
   }
 
@@ -984,7 +995,7 @@
 
 <nav>
   <a href="#" class="nav-logo">
-    <img src="logo.jpeg" alt="itch visuals logo" class="nav-logo-image">
+    <img src="new-logo.png" alt="itch visuals logo" class="nav-logo-image">
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
@@ -996,7 +1007,10 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow reveal">Performance Brand Design Studio — اتش فيجوالز</div>
+  <div class="hero-logo reveal">
+    <img src="new-logo.png" alt="itch visuals logo">
+  </div>
+  <div class="hero-eyebrow reveal reveal-delay-1">Performance Brand Design Studio — اتش فيجوالز</div>
   <h1 class="hero-headline reveal reveal-delay-1">
     <div class="solid">WE DESIGN</div>
     <div class="ghost">BRANDS PEOPLE</div>
@@ -1265,7 +1279,7 @@
 
 <footer>
   <a href="#" class="footer-logo">
-    <img src="logo.jpeg" alt="itch visuals logo" class="footer-logo-image">
+    <img src="new-logo.png" alt="itch visuals logo" class="footer-logo-image">
   </a>
   <span class="footer-copy">© 2025 itch VISUALS — اتش فيجوالز. All rights reserved.</span>
   <a href="#contact" class="footer-cta">Start Your Brand <span>→</span></a>
