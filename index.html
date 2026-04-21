@@ -129,11 +129,14 @@
     .trust-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
     .trust-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: rgba(245,245,245,0.7); line-height: 1.5; }
     .trust-list li::before { content: '→'; color: var(--red); font-family: var(--mono); flex-shrink: 0; margin-top: 1px; }
-    .contact-block { display: grid; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); max-width: 420px; }
+    .contact-block { display: grid; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); max-width: 520px; }
     .contact-note { font-size: 13px; line-height: 1.7; color: rgba(245,245,245,0.72); }
-    .contact-line { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; font-size: 10px; color: var(--muted); }
-    .contact-link { font-size: 11px; color: var(--white); text-decoration: none; transition: color 0.2s ease; word-break: break-word; }
-    .contact-link:hover { color: var(--red); }
+    .contact-list { display: grid; gap: 0.9rem; }
+    .contact-line { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--white); letter-spacing: 0.04em; text-transform: none; }
+    .contact-icon { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--red); }
+    .contact-icon svg { width: 100%; height: 100%; display: block; }
+    .contact-link { font-size: 18px; line-height: 1.4; color: var(--white); text-decoration: none; transition: color 0.2s ease, transform 0.2s ease; word-break: break-word; font-family: var(--syne); letter-spacing: 0; text-transform: none; }
+    .contact-link:hover { color: var(--yellow); transform: translateX(4px); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-group { margin-bottom: 1.25rem; }
     .form-label { display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
@@ -170,6 +173,8 @@
       .process-grid, .form-row { grid-template-columns: 1fr; }
       .hero-stats { gap: 2rem; }
       .services-header, footer { flex-direction: column; align-items: flex-start; }
+      .contact-link { font-size: 16px; }
+      .contact-line { font-size: 14px; }
     }
     body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9000; opacity: 0.4; }
   </style>
@@ -259,7 +264,23 @@
           <li>140+ brands built across 12 industries</li>
           <li>Fixed pricing, no surprise invoices</li>
         </ul>
-        <div class="contact-block reveal reveal-delay-4"><p class="contact-note">Reach out directly and let's talk about your next brand, campaign, or launch.</p><div class="contact-line">Email <a class="contact-link" href="mailto:Itchvisuals@gmail.com">Itchvisuals@gmail.com</a></div><div class="contact-line">Instagram <a class="contact-link" href="https://instagram.com/itchvisuals" target="_blank" rel="noopener noreferrer">@itchvisuals</a></div></div>
+        <div class="contact-block reveal reveal-delay-4">
+          <p class="contact-note">Reach out directly and let's talk about your next brand, campaign, or launch.</p>
+          <div class="contact-list">
+            <div class="contact-line">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6.75C3 5.7835 3.7835 5 4.75 5H19.25C20.2165 5 21 5.7835 21 6.75V17.25C21 18.2165 20.2165 19 19.25 19H4.75C3.7835 19 3 18.2165 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 7L11.0378 11.9033C11.6301 12.3475 12.3699 12.3475 12.9622 11.9033L19.5 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <a class="contact-link" href="mailto:Itchvisuals@gmail.com">Itchvisuals@gmail.com</a>
+            </div>
+            <div class="contact-line">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+              </span>
+              <a class="contact-link" href="https://instagram.com/itchvisuals" target="_blank" rel="noopener noreferrer">@itchvisuals</a>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="lead-form-right reveal reveal-delay-2">
         <form id="projectForm" action="https://formsubmit.co/Itchvisuals@gmail.com" method="POST">
