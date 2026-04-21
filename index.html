@@ -1218,24 +1218,29 @@
       </div>
     </div>
     <div class="lead-form-right reveal reveal-delay-2">
-      <form onsubmit="handleSubmit(event)">
+      <form id="contactForm" action="https://formsubmit.co/Itchvisuals@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New project brief — itch VISUALS">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://itchvisuals.me/?submitted=1#contact">
+        <input type="text" name="_honey" style="display:none">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="fname">Full Name</label>
-            <input class="form-input" id="fname" type="text" placeholder="Your name" required>
+            <input class="form-input" id="fname" name="Full Name" type="text" placeholder="Your name" required>
           </div>
           <div class="form-group">
             <label class="form-label" for="femail">Email</label>
-            <input class="form-input" id="femail" type="email" placeholder="you@company.com" required>
+            <input class="form-input" id="femail" name="Email" type="email" placeholder="you@company.com" required>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="fcompany">Company / Brand</label>
-          <input class="form-input" id="fcompany" type="text" placeholder="Your company name">
+          <input class="form-input" id="fcompany" name="Company / Brand" type="text" placeholder="Your company name">
         </div>
         <div class="form-group">
           <label class="form-label" for="fservice">Service Needed</label>
-          <select class="form-select" id="fservice">
+          <select class="form-select" id="fservice" name="Service Needed" required>
             <option value="" disabled selected>Select a service</option>
             <option>Brand Identity</option>
             <option>Performance Marketing Assets</option>
@@ -1248,7 +1253,7 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="fbudget">Project Budget</label>
-          <select class="form-select" id="fbudget">
+          <select class="form-select" id="fbudget" name="Project Budget" required>
             <option value="" disabled selected>Select a budget range</option>
             <option>$500 – $1,000</option>
             <option>$1,000 – $2,500</option>
@@ -1259,7 +1264,7 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="fmessage">Tell Us About Your Project</label>
-          <textarea class="form-textarea" id="fmessage" placeholder="Describe your project, goals, timeline…"></textarea>
+          <textarea class="form-textarea" id="fmessage" name="Project Details" placeholder="Describe your project, goals, timeline…" required></textarea>
         </div>
         <button type="submit" class="btn-submit">
           <span id="submitText">
@@ -1294,6 +1299,8 @@
   const ring = document.getElementById('cursor-ring');
   const successPopup = document.getElementById('successPopup');
   const successPopupClose = document.getElementById('successPopupClose');
+  const contactForm = document.getElementById('contactForm');
+  const submitText = document.getElementById('submitText');
   let mx = 0, my = 0, rx = 0, ry = 0;
 
   document.addEventListener('mousemove', e => {
@@ -1349,18 +1356,17 @@
     e.stopPropagation();
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.querySelector('.btn-submit');
-    const txt = document.getElementById('submitText');
-    btn.style.background = 'var(--yellow)';
-    txt.innerHTML = '<span>Got it. We’ll be in touch.</span>';
+  if (contactForm) {
+    contactForm.addEventListener('submit', () => {
+      submitText.innerHTML = '<span>Sending...</span>';
+    });
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('submitted') === '1') {
     openSuccessPopup();
-    setTimeout(() => {
-      btn.style.background = '';
-      txt.innerHTML = '<span>Submit & Let’s Talk</span><span>→</span>';
-      e.target.reset();
-    }, 3000);
+    submitText.innerHTML = '<span>Submitted</span><span>✓</span>';
+    window.history.replaceState({}, document.title, '/#contact');
   }
 
   window.addEventListener('keydown', (e) => {
