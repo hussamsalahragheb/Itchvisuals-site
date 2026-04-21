@@ -43,7 +43,6 @@
     transition: all 0.25s cubic-bezier(.25,.46,.45,.94);
   }
 
-  /* ─── CUSTOM CURSOR ─── */
   #cursor {
     position: fixed;
     width: 8px; height: 8px;
@@ -72,12 +71,10 @@
     background: rgba(255,184,0,0.06);
   }
 
-  /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--red); }
 
-  /* ─── TICKER ─── */
   .ticker {
     background: var(--red);
     overflow: hidden;
@@ -109,7 +106,6 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* ─── NAV ─── */
   nav {
     position: sticky;
     top: 0;
@@ -152,7 +148,8 @@
   }
   .nav-links a:hover { color: var(--white); }
   .nav-links a::after,
-  .footer-cta::after {
+  .footer-cta::after,
+  .contact-link::after {
     content: '';
     position: absolute;
     left: 0;
@@ -163,7 +160,8 @@
     transition: width 0.3s ease;
   }
   .nav-links a:hover::after,
-  .footer-cta:hover::after { width: 100%; }
+  .footer-cta:hover::after,
+  .contact-link:hover::after { width: 100%; }
   .nav-cta {
     font-family: var(--mono);
     font-size: 11px;
@@ -182,7 +180,6 @@
     box-shadow: 0 10px 30px rgba(255, 61, 0, 0.25);
   }
 
-  /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
     padding: 8vw 4vw 6vw;
@@ -322,7 +319,6 @@
     margin-top: 6px;
   }
 
-  /* ─── SECTION HEADER ─── */
   .section-eyebrow {
     font-family: var(--mono);
     font-size: 10px;
@@ -342,7 +338,6 @@
     background: var(--red);
   }
 
-  /* ─── SERVICES ─── */
   .services {
     padding: 8vw 4vw;
     border-top: 1px solid var(--border);
@@ -436,7 +431,6 @@
     transform: rotate(0deg);
   }
 
-  /* ─── PROCESS ─── */
   .process {
     padding: 8vw 4vw;
     background: var(--surface);
@@ -517,7 +511,6 @@
     z-index: 1;
   }
 
-  /* ─── TESTIMONIALS ─── */
   .testimonials {
     padding: 8vw 4vw;
     border-top: 1px solid var(--border);
@@ -622,7 +615,6 @@
     font-size: 12px;
   }
 
-  /* ─── LEAD FORM ─── */
   .lead-form-section {
     padding: 8vw 4vw;
     background: var(--surface);
@@ -659,6 +651,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 2rem;
   }
   .trust-list li {
     display: flex;
@@ -675,6 +668,42 @@
     font-family: var(--mono);
     flex-shrink: 0;
     margin-top: 1px;
+  }
+
+  .contact-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+  .contact-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--syne);
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .contact-link:hover {
+    color: var(--yellow);
+    transform: translateX(4px);
+  }
+  .contact-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    flex-shrink: 0;
+  }
+  .contact-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .form-row {
@@ -767,7 +796,77 @@
     box-shadow: 0 10px 30px rgba(255, 61, 0, 0.25);
   }
 
-  /* ─── FOOTER ─── */
+  .success-popup {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(8,8,8,0.72);
+    backdrop-filter: blur(10px);
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .success-popup.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .success-popup-card {
+    width: min(100%, 460px);
+    background: #101010;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    padding: 2rem;
+    position: relative;
+  }
+  .success-popup-badge {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(255,61,0,0.12);
+    border: 1px solid rgba(255,61,0,0.28);
+    color: var(--red);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--syne);
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+  }
+  .success-popup-title {
+    font-family: var(--syne);
+    font-size: 1.8rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.8rem;
+  }
+  .success-popup-text {
+    color: rgba(245,245,245,0.7);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .success-popup-close {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 18px;
+    cursor: none;
+  }
+  .success-popup-close:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
   footer {
     padding: 3rem 4vw;
     border-top: 1px solid var(--border);
@@ -810,7 +909,6 @@
   }
   .footer-cta:hover { gap: 14px; }
 
-  /* ─── SCROLL REVEAL ─── */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -825,7 +923,6 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
-  /* ─── MOBILE ─── */
   @media (max-width: 900px) {
     body { cursor: auto; }
     #cursor, #cursor-ring { display: none; }
@@ -843,9 +940,9 @@
     .services-header { flex-direction: column; align-items: flex-start; }
     footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .footer-logo-image { height: 52px; }
+    .success-popup-card { padding: 1.5rem; }
   }
 
-  /* ─── NOISE OVERLAY ─── */
   body::after {
     content: '';
     position: fixed;
@@ -1087,6 +1184,20 @@
         <li>140+ brands built across 12 industries</li>
         <li>Fixed pricing, no surprise invoices</li>
       </ul>
+      <div class="contact-list reveal reveal-delay-4">
+        <a class="contact-link" href="mailto:Itchvisuals@gmail.com">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6.75C3 5.7835 3.7835 5 4.75 5H19.25C20.2165 5 21 5.7835 21 6.75V17.25C21 18.2165 20.2165 19 19.25 19H4.75C3.7835 19 3 18.2165 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 7L11.0378 11.9033C11.6301 12.3475 12.3699 12.3475 12.9622 11.9033L19.5 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Itchvisuals@gmail.com</span>
+        </a>
+        <a class="contact-link" href="https://instagram.com/itchvisuals" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </span>
+          <span>@itchvisuals</span>
+        </a>
+      </div>
     </div>
     <div class="lead-form-right reveal reveal-delay-2">
       <form onsubmit="handleSubmit(event)">
@@ -1143,6 +1254,15 @@
   </div>
 </section>
 
+<div class="success-popup" id="successPopup" aria-hidden="true">
+  <div class="success-popup-card">
+    <div class="success-popup-badge">✓</div>
+    <div class="success-popup-title">Message received.</div>
+    <div class="success-popup-text">Your brief is in. We’ll review it and get back to you soon.</div>
+    <button class="success-popup-close" id="successPopupClose" type="button">Close</button>
+  </div>
+</div>
+
 <footer>
   <a href="#" class="footer-logo">
     <img src="logo.jpeg" alt="itch visuals logo" class="footer-logo-image">
@@ -1154,6 +1274,8 @@
 <script>
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
+  const successPopup = document.getElementById('successPopup');
+  const successPopupClose = document.getElementById('successPopupClose');
   let mx = 0, my = 0, rx = 0, ry = 0;
 
   document.addEventListener('mousemove', e => {
@@ -1182,18 +1304,40 @@
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
+  function openSuccessPopup() {
+    successPopup.classList.add('show');
+    successPopup.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeSuccessPopup() {
+    successPopup.classList.remove('show');
+    successPopup.setAttribute('aria-hidden', 'true');
+  }
+
+  successPopupClose.addEventListener('click', closeSuccessPopup);
+  successPopup.addEventListener('click', (e) => {
+    if (e.target === successPopup) closeSuccessPopup();
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
     const btn = document.querySelector('.btn-submit');
     const txt = document.getElementById('submitText');
     btn.style.background = 'var(--yellow)';
     txt.innerHTML = '<span>Got it. We’ll be in touch.</span>';
+    openSuccessPopup();
     setTimeout(() => {
       btn.style.background = '';
       txt.innerHTML = '<span>Submit & Let’s Talk</span><span>→</span>';
       e.target.reset();
     }, 3000);
   }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && successPopup.classList.contains('show')) {
+      closeSuccessPopup();
+    }
+  });
 
   window.addEventListener('load', () => {
     document.querySelectorAll('.hero .reveal').forEach((el, i) => {
