@@ -23,7 +23,11 @@
     --body: 'Instrument Sans', sans-serif;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
   html { scroll-behavior: smooth; }
 
@@ -33,6 +37,10 @@
     font-family: var(--body);
     overflow-x: hidden;
     cursor: none;
+  }
+
+  a, button, .service-row, .tcard, .process-step, .form-input, .form-select, .form-textarea {
+    transition: all 0.25s cubic-bezier(.25,.46,.45,.94);
   }
 
   /* ─── CUSTOM CURSOR ─── */
@@ -134,15 +142,28 @@
     list-style: none;
   }
   .nav-links a {
+    position: relative;
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
     text-decoration: none;
-    transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--white); }
+  .nav-links a::after,
+  .footer-cta::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
+    background: var(--red);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after,
+  .footer-cta:hover::after { width: 100%; }
   .nav-cta {
     font-family: var(--mono);
     font-size: 11px;
@@ -153,11 +174,12 @@
     border: none;
     padding: 10px 22px;
     cursor: none;
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   }
   .nav-cta:hover {
     background: var(--yellow);
     transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(255, 61, 0, 0.25);
   }
 
   /* ─── HERO ─── */
@@ -199,8 +221,8 @@
     font-family: var(--syne);
     font-weight: 800;
     font-size: clamp(3.5rem, 9vw, 10rem);
-    line-height: 0.92;
-    letter-spacing: -0.04em;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
     margin-bottom: 2.5rem;
   }
   .hero-headline .solid { color: var(--white); }
@@ -212,9 +234,9 @@
   .hero-sub {
     font-family: var(--body);
     font-size: clamp(1rem, 1.6vw, 1.15rem);
-    color: var(--muted);
-    max-width: 480px;
-    line-height: 1.7;
+    color: rgba(245,245,245,0.72);
+    max-width: 520px;
+    line-height: 1.75;
     margin-bottom: 3rem;
   }
   .hero-actions {
@@ -235,7 +257,6 @@
     cursor: none;
     text-decoration: none;
     display: inline-block;
-    transition: all 0.2s;
     position: relative;
     overflow: hidden;
   }
@@ -248,6 +269,10 @@
     transition: transform 0.3s cubic-bezier(.25,.46,.45,.94);
   }
   .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 61, 0, 0.25);
+  }
   .btn-primary span { position: relative; z-index: 1; }
   .btn-ghost {
     font-family: var(--mono);
@@ -261,9 +286,9 @@
     cursor: none;
     text-decoration: none;
     display: inline-block;
-    transition: all 0.2s;
   }
   .btn-ghost:hover {
+    transform: translateY(-2px);
     border-color: var(--red);
     color: var(--red);
   }
@@ -281,6 +306,7 @@
     display: flex;
     align-items: baseline;
     gap: 2px;
+    letter-spacing: -0.04em;
   }
   .stat-number sup {
     font-size: 0.5em;
@@ -333,8 +359,8 @@
     font-family: var(--syne);
     font-weight: 800;
     font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.03em;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
   }
   .services-title .ghost {
     -webkit-text-stroke: 1px rgba(245,245,245,0.2);
@@ -357,7 +383,6 @@
     padding: 2rem 0;
     border-bottom: 1px solid var(--border);
     position: relative;
-    transition: all 0.3s cubic-bezier(.25,.46,.45,.94);
     cursor: none;
     overflow: hidden;
   }
@@ -374,7 +399,11 @@
     transition: transform 0.35s cubic-bezier(.25,.46,.45,.94);
   }
   .service-row:hover::before { transform: scaleY(1); }
-  .service-row:hover { padding-left: 1.5rem; background: rgba(255,61,0,0.03); }
+  .service-row:hover {
+    transform: translateX(10px);
+    padding-left: 1.5rem;
+    background: rgba(255,61,0,0.05);
+  }
 
   .service-num {
     font-family: var(--mono);
@@ -387,21 +416,19 @@
     font-size: clamp(1.1rem, 2vw, 1.6rem);
     font-weight: 700;
     margin-bottom: 0.4rem;
-    transition: color 0.2s;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
   .service-row:hover .service-name { color: var(--red); }
   .service-desc {
     font-family: var(--body);
     font-size: 13px;
     color: var(--muted);
-    line-height: 1.5;
-    max-width: 420px;
+    line-height: 1.55;
+    max-width: 440px;
   }
   .service-arrow {
     font-size: 1.5rem;
     color: var(--muted);
-    transition: all 0.3s;
     transform: rotate(-45deg);
   }
   .service-row:hover .service-arrow {
@@ -416,15 +443,13 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-  .process-header {
-    margin-bottom: 4rem;
-  }
+  .process-header { margin-bottom: 4rem; }
   .process-title {
     font-family: var(--syne);
     font-weight: 800;
     font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.03em;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
   }
   .process-grid {
     display: grid;
@@ -437,7 +462,6 @@
     padding: 2.5rem 2rem;
     position: relative;
     overflow: hidden;
-    transition: background 0.3s;
     cursor: none;
   }
   .process-step::before {
@@ -481,8 +505,8 @@
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
   }
   .step-desc {
     font-family: var(--body);
@@ -510,8 +534,8 @@
     font-family: var(--syne);
     font-weight: 800;
     font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.03em;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
   }
   .testimonials-grid {
     display: grid;
@@ -522,7 +546,6 @@
     background: var(--surface);
     border: 1px solid var(--border);
     padding: 2.5rem;
-    transition: all 0.35s cubic-bezier(.25,.46,.45,.94);
     cursor: none;
     position: relative;
     overflow: hidden;
@@ -539,7 +562,10 @@
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(.25,.46,.45,.94);
   }
-  .tcard:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
+  .tcard:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  }
   .tcard:hover::after { transform: scaleX(1); }
 
   .tcard-quote {
@@ -579,7 +605,6 @@
     font-family: var(--syne);
     font-size: 13px;
     font-weight: 700;
-    margin-bottom: 2px;
   }
   .tcard-role {
     font-family: var(--mono);
@@ -613,9 +638,9 @@
     font-family: var(--syne);
     font-weight: 800;
     font-size: clamp(2rem, 3.5vw, 3.5rem);
-    line-height: 1.05;
+    line-height: 1;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
   }
   .lead-form-headline .ghost {
     -webkit-text-stroke: 1px rgba(245,245,245,0.2);
@@ -625,8 +650,9 @@
     font-family: var(--body);
     font-size: 14px;
     color: var(--muted);
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 2.5rem;
+    max-width: 500px;
   }
   .trust-list {
     list-style: none;
@@ -656,9 +682,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
-  .form-group {
-    margin-bottom: 1.25rem;
-  }
+  .form-group { margin-bottom: 1.25rem; }
   .form-label {
     display: block;
     font-family: var(--mono);
@@ -679,7 +703,6 @@
     font-size: 14px;
     padding: 14px 16px;
     outline: none;
-    transition: border-color 0.2s, background 0.2s;
     -webkit-appearance: none;
     appearance: none;
     border-radius: 0;
@@ -721,7 +744,6 @@
     border: none;
     padding: 18px;
     cursor: none;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -740,6 +762,10 @@
   }
   .btn-submit:hover::after { transform: translateX(0); }
   .btn-submit span { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; }
+  .btn-submit:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 61, 0, 0.25);
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -770,6 +796,7 @@
     letter-spacing: 0.08em;
   }
   .footer-cta {
+    position: relative;
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -800,6 +827,8 @@
 
   /* ─── MOBILE ─── */
   @media (max-width: 900px) {
+    body { cursor: auto; }
+    #cursor, #cursor-ring { display: none; }
     .process-grid { grid-template-columns: 1fr 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .lead-form-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -833,7 +862,6 @@
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
-<!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track" id="tickerTrack">
     <span class="ticker-item">Brand Identity</span>
@@ -857,7 +885,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
     <img src="logo.jpeg" alt="itch visuals logo" class="nav-logo-image">
@@ -868,22 +895,21 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a Project</button>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let’s Build Something</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow reveal">Performance Brand Design Studio — اتش فيجوالز</div>
   <h1 class="hero-headline reveal reveal-delay-1">
-    <div class="solid">WE BUILD</div>
-    <div class="ghost">BRANDS THAT</div>
-    <div class="accent">CONVERT.</div>
+    <div class="solid">WE DESIGN</div>
+    <div class="ghost">BRANDS PEOPLE</div>
+    <div class="accent">CAN’T IGNORE.</div>
   </h1>
   <p class="hero-sub reveal reveal-delay-2">
-    From strategy to execution — we craft cinematic brand identities and performance marketing assets that demand attention and drive results.
+    We don’t just make things look good. We build brand systems that attract, convert, and scale.
   </p>
   <div class="hero-actions reveal reveal-delay-3">
-    <a href="#contact" class="btn-primary"><span>Start Your Project →</span></a>
+    <a href="#contact" class="btn-primary"><span>Start Your Brand →</span></a>
     <a href="#services" class="btn-ghost">See Our Work</a>
   </div>
   <div class="hero-stats reveal reveal-delay-4">
@@ -902,14 +928,13 @@
   </div>
 </section>
 
-<!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-header">
     <div>
       <div class="section-eyebrow reveal">What We Do</div>
       <h2 class="services-title reveal reveal-delay-1">
-        <span class="solid">OUR</span><br>
-        <span class="ghost">SERVICES</span>
+        <span class="solid">WHAT WE</span><br>
+        <span class="ghost">ACTUALLY DO.</span>
       </h2>
     </div>
     <p class="services-note reveal reveal-delay-2">Everything your brand needs to stand out and sell.</p>
@@ -919,7 +944,7 @@
     <span class="service-num">01</span>
     <div class="service-info">
       <div class="service-name">Brand Identity</div>
-      <div class="service-desc">Logo systems, visual language, brand guidelines, and full identity kits built for longevity and impact.</div>
+      <div class="service-desc">We build brand identities that don’t just look premium — they position you as the obvious choice.</div>
     </div>
     <span class="service-arrow">↗</span>
   </div>
@@ -927,7 +952,7 @@
     <span class="service-num">02</span>
     <div class="service-info">
       <div class="service-name">Performance Marketing Assets</div>
-      <div class="service-desc">Ad creatives, landing pages, and conversion-optimized visuals built for paid media campaigns.</div>
+      <div class="service-desc">Creatives designed to stop the scroll and drive real results — not just impressions.</div>
     </div>
     <span class="service-arrow">↗</span>
   </div>
@@ -935,7 +960,7 @@
     <span class="service-num">03</span>
     <div class="service-info">
       <div class="service-name">Social Media Design</div>
-      <div class="service-desc">Consistent, scroll-stopping content systems for Instagram, TikTok, LinkedIn, and beyond.</div>
+      <div class="service-desc">A content system that makes your brand impossible to ignore.</div>
     </div>
     <span class="service-arrow">↗</span>
   </div>
@@ -943,7 +968,7 @@
     <span class="service-num">04</span>
     <div class="service-info">
       <div class="service-name">Motion & Video Graphics</div>
-      <div class="service-desc">Cinematic intros, reel covers, animated ads, and motion content that commands attention.</div>
+      <div class="service-desc">Cinematic intros, animated content, and motion assets built to add presence, rhythm, and memorability.</div>
     </div>
     <span class="service-arrow">↗</span>
   </div>
@@ -951,7 +976,7 @@
     <span class="service-num">05</span>
     <div class="service-info">
       <div class="service-name">Web Design & Landing Pages</div>
-      <div class="service-desc">High-converting, brand-aligned web experiences designed for performance and aesthetic excellence.</div>
+      <div class="service-desc">High-converting digital experiences designed to sharpen perception and move serious clients to act.</div>
     </div>
     <span class="service-arrow">↗</span>
   </div>
@@ -959,13 +984,12 @@
     <span class="service-num">06</span>
     <div class="service-info">
       <div class="service-name">Visual Strategy & Consulting</div>
-      <div class="service-desc">Brand audits, competitor analysis, and visual strategy sessions to align your look with your goals.</div>
+      <div class="service-desc">Strategic direction for brands that need sharper positioning, stronger visuals, and clearer market impact.</div>
     </div>
     <span class="service-arrow">↗</span>
   </div>
 </section>
 
-<!-- PROCESS -->
 <section class="process" id="process">
   <div class="process-header">
     <div class="section-eyebrow reveal">How It Works</div>
@@ -982,7 +1006,7 @@
       <div class="step-ghost-num">02</div>
       <div class="step-badge">Step 02 — Concept</div>
       <div class="step-title">Creative Direction & Concepts</div>
-      <p class="step-desc">We develop 2–3 bold creative directions, rooted in strategy, ready for your feedback and refinement.</p>
+      <p class="step-desc">We develop bold creative directions rooted in strategy, ready for refinement and execution.</p>
     </div>
     <div class="process-step reveal reveal-delay-2">
       <div class="step-ghost-num">03</div>
@@ -999,12 +1023,11 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials" id="work">
   <div class="testimonials-header">
     <div>
       <div class="section-eyebrow reveal">Client Words</div>
-      <h2 class="testimonials-title reveal reveal-delay-1">WHAT THEY<br>SAY.</h2>
+      <h2 class="testimonials-title reveal reveal-delay-1">WHAT OUR CLIENTS<br>EXPERIENCE.</h2>
     </div>
   </div>
   <div class="testimonials-grid">
@@ -1047,17 +1070,16 @@
   </div>
 </section>
 
-<!-- LEAD FORM -->
 <section class="lead-form-section" id="contact">
   <div class="lead-form-grid">
     <div class="lead-form-left">
       <div class="section-eyebrow reveal">Get in Touch</div>
       <h2 class="lead-form-headline reveal reveal-delay-1">
-        LET'S BUILD<br>
-        <span class="ghost">SOMETHING</span><br>
+        LET’S TURN YOUR BRAND<br>
+        <span class="ghost">INTO SOMETHING</span><br>
         ICONIC.
       </h2>
-      <p class="lead-form-sub reveal reveal-delay-2">Tell us about your project. We'll get back to you within 24 hours with a custom scope and strategy.</p>
+      <p class="lead-form-sub reveal reveal-delay-2">Tell us where you are — we’ll map how to get you where you want to be.</p>
       <ul class="trust-list reveal reveal-delay-3">
         <li>Response within 24 hours, every time</li>
         <li>No retainer lock-in — project-based pricing</li>
@@ -1112,7 +1134,7 @@
         </div>
         <button type="submit" class="btn-submit">
           <span id="submitText">
-            <span>Send Project Brief</span>
+            <span>Submit & Let’s Talk</span>
             <span>→</span>
           </span>
         </button>
@@ -1121,13 +1143,12 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <a href="#" class="footer-logo">
     <img src="logo.jpeg" alt="itch visuals logo" class="footer-logo-image">
   </a>
   <span class="footer-copy">© 2025 itch VISUALS — اتش فيجوالز. All rights reserved.</span>
-  <a href="#contact" class="footer-cta">Start a Project <span>→</span></a>
+  <a href="#contact" class="footer-cta">Start Your Brand <span>→</span></a>
 </footer>
 
 <script>
@@ -1166,10 +1187,10 @@
     const btn = document.querySelector('.btn-submit');
     const txt = document.getElementById('submitText');
     btn.style.background = 'var(--yellow)';
-    txt.innerHTML = '<span>✓ Message Sent!</span>';
+    txt.innerHTML = '<span>Got it. We’ll be in touch.</span>';
     setTimeout(() => {
       btn.style.background = '';
-      txt.innerHTML = '<span>Send Project Brief</span><span>→</span>';
+      txt.innerHTML = '<span>Submit & Let’s Talk</span><span>→</span>';
       e.target.reset();
     }, 3000);
   }
