@@ -1,200 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="itch VISUALS — cinematic brand identity, campaign design, motion graphics, and premium web experiences for ambitious brands.">
-  <meta name="theme-color" content="#080808">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="itch VISUALS — cinematic brand identity, campaign design, motion graphics, and premium web experiences for ambitious brands." />
+  <meta name="theme-color" content="#080808" />
   <title>itch VISUALS — اتش فيجوالز</title>
-  <link rel="icon" href="logo.jpeg">
-  <link rel="apple-touch-icon" href="logo.jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo.jpeg" />
+  <link rel="apple-touch-icon" href="logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #080808;
-      --surface: #0f0f0f;
-      --border: rgba(255,255,255,0.07);
-      --red: #FF3D00;
-      --yellow: #FFB800;
-      --white: #F5F5F5;
-      --muted: rgba(245,245,245,0.4);
+      --bg: #050505;
+      --surface: #0a0a0a;
+      --surface-2: #0d0d0d;
+      --border: rgba(255,255,255,0.1);
+      --border-soft: rgba(255,255,255,0.07);
+      --red: #ff4b2f;
+      --yellow: #ffb800;
+      --white: #f4f4f4;
+      --muted: rgba(244,244,244,0.68);
+      --muted-2: rgba(244,244,244,0.42);
       --syne: 'Syne', sans-serif;
       --mono: 'IBM Plex Mono', monospace;
-      --body: 'Instrument Sans', sans-serif;
+      --body: 'Inter', sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: var(--body); overflow-x: hidden; cursor: none; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--body);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
     a, button, input, textarea, select { -webkit-tap-highlight-color: transparent; }
-    #cursor { position: fixed; width: 8px; height: 8px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, background 0.2s; }
-    #cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid rgba(255,61,0,0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.18s cubic-bezier(.25,.46,.45,.94); }
+
+    #cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid rgba(255,75,47,0.45);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.18s cubic-bezier(.25,.46,.45,.94);
+    }
+
     body:has(a:hover) #cursor-ring,
     body:has(button:hover) #cursor-ring,
     body:has(input:hover) #cursor-ring,
     body:has(select:hover) #cursor-ring,
-    body:has(textarea:hover) #cursor-ring { width: 56px; height: 56px; border-color: var(--yellow); background: rgba(255,184,0,0.06); }
+    body:has(textarea:hover) #cursor-ring {
+      width: 54px;
+      height: 54px;
+      border-color: rgba(255,184,0,0.72);
+      background: rgba(255,184,0,0.05);
+    }
+
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--red); }
-    .ticker { background: var(--red); overflow: hidden; white-space: nowrap; padding: 10px 0; position: relative; z-index: 100; }
-    .ticker-track { display: inline-flex; min-width: max-content; animation: ticker 28s linear infinite; }
-    .ticker-item { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); padding: 0 2rem; font-weight: 500; }
-    .ticker-item::before { content: '✦'; margin-right: 2rem; opacity: 0.7; }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    nav { position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 4vw; height: 72px; background: rgba(8,8,8,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .nav-logo, .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-    .logo-circle { width: 52px; height: 52px; background: #000; border: 1.5px solid rgba(255,255,255,0.16); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset; }
-    .logo-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
-    .nav-links a, .footer-copy, .footer-cta, .nav-cta, .contact-link, .contact-line, .booking-meta, .price-note { font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
-    .nav-links a { font-size: 11px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta { font-size: 11px; color: var(--bg); background: var(--red); border: none; padding: 10px 22px; cursor: none; transition: background 0.2s, transform 0.2s; }
-    .nav-cta:hover { background: var(--yellow); transform: translateY(-1px); }
+    .page-shell {
+      min-height: 100vh;
+      padding: 0 3.2vw 2.2rem;
+    }
 
-    .hero, .positioning, .services, .process, .testimonials, .lead-form-section, footer { width: 100%; }
-    .hero { min-height: calc(100vh - 72px); padding: 8vw 4vw 6vw; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(255,61,0,0.07) 0%, transparent 70%); pointer-events: none; }
-    .hero-eyebrow, .section-eyebrow, .step-badge, .form-label, .stat-label, .services-note, .service-num, .tcard-role { font-family: var(--mono); }
-    .hero-eyebrow, .section-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
-    .hero-eyebrow::before, .section-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--red); }
-    .section-eyebrow { font-size: 10px; margin-bottom: 1rem; gap: 0.75rem; }
-    .section-eyebrow::before { width: 24px; }
-    .hero-headline, .services-title, .process-title, .testimonials-title, .lead-form-headline, .service-name, .step-title, .stat-number, .tcard-name, .tcard-quote { font-family: var(--syne); }
-    .hero-headline { font-weight: 800; font-size: clamp(3.5rem, 9vw, 10rem); line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 2.5rem; position: relative; z-index: 1; }
-    .hero-headline .solid { color: var(--white); }
-    .hero-headline .ghost { -webkit-text-stroke: 1.5px rgba(245,245,245,0.25); color: transparent; }
-    .hero-headline .accent { color: var(--red); }
-    .hero-sub { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--muted); max-width: 540px; line-height: 1.7; margin-bottom: 3rem; position: relative; z-index: 1; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 5rem; position: relative; z-index: 1; }
-    .btn-primary, .btn-ghost, .btn-submit { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; cursor: none; transition: all 0.2s; position: relative; overflow: hidden; }
-    .btn-primary, .btn-submit { color: var(--bg); background: var(--red); border: none; }
-    .btn-primary { padding: 16px 36px; }
-    .btn-primary::after, .btn-submit::after { content: ''; position: absolute; inset: 0; background: var(--yellow); transform: translateX(-101%); transition: transform 0.3s cubic-bezier(.25,.46,.45,.94); }
-    .btn-primary:hover::after, .btn-submit:hover::after { transform: translateX(0); }
-    .btn-primary span, .btn-submit span { position: relative; z-index: 1; }
-    .btn-ghost { color: var(--white); background: transparent; border: 1px solid rgba(255,255,255,0.2); padding: 16px 36px; }
-    .btn-ghost:hover { border-color: var(--red); color: var(--red); }
-    .hero-stats { display: flex; gap: 4rem; flex-wrap: wrap; position: relative; z-index: 1; }
-    .stat-number { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: var(--white); line-height: 1; display: flex; align-items: baseline; gap: 2px; }
-    .stat-number sup { font-size: 0.5em; color: var(--red); font-weight: 700; }
-    .stat-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    .ticker {
+      background: var(--red);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 9px 0;
+      position: relative;
+      z-index: 100;
+    }
 
-    .positioning, .services, .testimonials, .lead-form-section { border-top: 1px solid var(--border); }
-    .positioning, .services, .process, .testimonials, .lead-form-section { padding: 8vw 4vw; }
-    .services-header, .testimonials-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
-    .services-title, .process-title, .testimonials-title, .lead-form-headline { font-weight: 800; font-size: clamp(2rem, 4vw, 4rem); line-height: 1; }
-    .services-title .ghost, .lead-form-headline .ghost { -webkit-text-stroke: 1px rgba(245,245,245,0.2); color: transparent; }
-    .services-note { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; max-width: 260px; line-height: 1.6; }
-    .service-row { display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); position: relative; transition: all 0.3s cubic-bezier(.25,.46,.45,.94); cursor: none; overflow: hidden; }
-    .service-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--red); transform: scaleY(0); transform-origin: bottom; transition: transform 0.35s cubic-bezier(.25,.46,.45,.94); }
-    .service-row:hover::before { transform: scaleY(1); }
-    .service-row:hover { padding-left: 1.5rem; background: rgba(255,61,0,0.03); }
-    .service-num { font-size: 11px; color: var(--red); letter-spacing: 0.08em; }
-    .service-name { font-size: clamp(1.1rem, 2vw, 1.6rem); font-weight: 700; margin-bottom: 0.4rem; transition: color 0.2s; }
-    .service-row:hover .service-name { color: var(--red); }
-    .service-desc { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 520px; }
-    .service-arrow { font-size: 1.5rem; color: var(--muted); transition: all 0.3s; transform: rotate(-45deg); }
-    .service-row:hover .service-arrow { color: var(--red); transform: rotate(0deg); }
+    .ticker-track {
+      display: inline-flex;
+      min-width: max-content;
+      animation: ticker 28s linear infinite;
+    }
 
-    .process { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .process-header { margin-bottom: 4rem; }
-    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
-    .process-step { background: var(--surface); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background 0.3s; cursor: none; }
-    .process-step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(.25,.46,.45,.94); }
-    .process-step:hover::before { transform: scaleX(1); }
-    .process-step:hover { background: rgba(255,61,0,0.04); }
-    .step-ghost-num { position: absolute; bottom: -0.2em; right: -0.05em; font-family: var(--syne); font-weight: 800; font-size: 9rem; -webkit-text-stroke: 1px rgba(255,255,255,0.05); color: transparent; line-height: 1; pointer-events: none; user-select: none; }
-    .step-badge { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 1.5rem; }
-    .step-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
-    .step-desc, .lead-form-sub, .trust-list li, .tcard-text, .form-input, .form-select, .form-textarea, .footer-copy, .contact-note, .form-status { font-family: var(--body); }
-    .step-desc, .lead-form-sub, .trust-list li, .tcard-text { font-size: 13px; color: var(--muted); line-height: 1.65; position: relative; z-index: 1; }
+    .ticker-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0b0b0b;
+      padding: 0 2rem;
+      font-weight: 500;
+    }
 
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .tcard { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; transition: all 0.35s cubic-bezier(.25,.46,.45,.94); cursor: none; position: relative; overflow: hidden; }
-    .tcard::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--red), var(--yellow)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(.25,.46,.45,.94); }
-    .tcard:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
-    .tcard:hover::after { transform: scaleX(1); }
-    .tcard-quote { font-size: 2.5rem; color: var(--red); line-height: 1; margin-bottom: 1.5rem; opacity: 0.6; }
-    .tcard-stars { display: flex; gap: 3px; margin-bottom: 1.5rem; }
-    .tcard-stars span { color: var(--yellow); font-size: 12px; }
-    .tcard-text { font-size: 14px; line-height: 1.75; color: rgba(245,245,245,0.75); margin-bottom: 2rem; }
-    .tcard-author { display: flex; align-items: center; gap: 12px; }
-    .tcard-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--red), var(--yellow)); display: flex; align-items: center; justify-content: center; font-family: var(--syne); font-weight: 700; font-size: 14px; color: var(--bg); flex-shrink: 0; }
-    .tcard-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-    .tcard-role { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+    .ticker-item::before {
+      content: '✦';
+      margin-right: 2rem;
+      opacity: 0.72;
+    }
 
-    .lead-form-section { background: var(--surface); }
-    .lead-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .lead-form-headline { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
-    .lead-form-sub { font-size: 14px; line-height: 1.7; margin-bottom: 1.3rem; }
-    .price-note { font-size: 10px; color: var(--white); margin-bottom: 0.8rem; }
-    .booking-meta { font-size: 10px; color: var(--red); margin-bottom: 2rem; }
-    .trust-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
-    .trust-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: rgba(245,245,245,0.7); line-height: 1.5; }
-    .trust-list li::before { content: '→'; color: var(--red); font-family: var(--mono); flex-shrink: 0; margin-top: 1px; }
-    .contact-block { display: grid; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); max-width: 520px; }
-    .contact-note { font-size: 13px; line-height: 1.7; color: rgba(245,245,245,0.72); }
-    .contact-list { display: grid; gap: 0.9rem; }
-    .contact-line { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--white); letter-spacing: 0.04em; text-transform: none; }
-    .contact-icon { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--red); }
-    .contact-icon svg { width: 100%; height: 100%; display: block; }
-    .contact-link { font-size: 18px; line-height: 1.4; color: var(--white); text-decoration: none; transition: color 0.2s ease, transform 0.2s ease; word-break: break-word; font-family: var(--syne); letter-spacing: 0; text-transform: none; }
-    .contact-link:hover { color: var(--yellow); transform: translateX(4px); }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-label { display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .form-input, .form-select, .form-textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--white); font-size: 14px; padding: 14px 16px; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; appearance: none; border-radius: 0; cursor: none; }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--red); background: rgba(255,61,0,0.04); }
-    .form-input::placeholder, .form-textarea::placeholder { color: rgba(245,245,245,0.2); }
-    .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23FF3D00' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-    .form-select option { background: #111; color: var(--white); }
-    .form-textarea { resize: vertical; min-height: 120px; }
-    .btn-submit { width: 100%; padding: 18px; gap: 12px; margin-top: 0.5rem; }
-    .btn-submit span { display: inline-flex; align-items: center; gap: 10px; }
-    .form-status { display: none; }
-    .success-toast { display: none; margin-top: 1rem; padding: 14px 16px; border: 1px solid rgba(255,184,0,0.28); background: rgba(255,184,0,0.06); color: var(--white); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.6; }
+    nav {
+      height: 112px;
+      display: grid;
+      grid-template-columns: 360px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      width: 300px;
+      max-width: 100%;
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: brightness(1.06);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3.4rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      opacity: 0.88;
+      transition: color .2s ease, opacity .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--red);
+      opacity: 1;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      transform: translateX(-50%);
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 1px solid rgba(255,75,47,0.9);
+      padding: 18px 28px;
+      min-width: 300px;
+      cursor: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: border-color .2s ease, color .2s ease, transform .2s ease, background .2s ease;
+    }
+
+    .nav-cta:hover {
+      color: var(--bg);
+      background: var(--red);
+      transform: translateY(-1px);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.88fr 0.98fr;
+      gap: 3.4rem;
+      align-items: start;
+      padding-top: 1rem;
+    }
+
+    .column {
+      min-width: 0;
+    }
+
+    .hero-column {
+      padding-top: 2.4rem;
+    }
+
+    .hero-headline {
+      font-family: var(--syne);
+      font-weight: 800;
+      font-size: clamp(4rem, 7vw, 6.6rem);
+      line-height: 0.93;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-headline .solid { color: var(--white); display: block; }
+    .hero-headline .accent { color: var(--red); display: block; }
+
+    .hero-divider {
+      width: 38px;
+      height: 2px;
+      background: rgba(255,255,255,0.72);
+      margin: 2rem 0 1.8rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+      line-height: 1.6;
+      color: rgba(244,244,244,0.85);
+      max-width: 520px;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-sub strong {
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: 360px;
+      max-width: 100%;
+      padding: 18px 26px;
+      border: 1px solid rgba(255,75,47,0.82);
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--red);
+      color: var(--bg);
+      transform: translateY(-1px);
+    }
+
+    .middle-column,
+    .form-column {
+      padding-top: 2.8rem;
+    }
+
+    .mini-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.8rem;
+    }
+
+    .stack-title {
+      font-family: var(--syne);
+      font-weight: 800;
+      font-size: clamp(2.2rem, 4.2vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .stack-title .accent { color: var(--red); }
+
+    .stack-divider {
+      width: 42px;
+      height: 2px;
+      background: rgba(255,255,255,0.72);
+      margin: 1.4rem 0 1.4rem;
+    }
+
+    .stack-sub {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(244,244,244,0.82);
+      max-width: 360px;
+      margin-bottom: 2rem;
+    }
+
+    .position-list {
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .position-item {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 1rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .position-num {
+      font-family: var(--syne);
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--red);
+    }
+
+    .position-name {
+      font-family: var(--syne);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.01em;
+    }
+
+    .position-desc {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: rgba(244,244,244,0.78);
+      max-width: 300px;
+    }
+
+    .services-hidden,
+    .process-hidden,
+    .testimonials-hidden {
+      display: none;
+    }
+
+    .form-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.8rem;
+    }
+
+    .form-title {
+      font-family: var(--syne);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 4vw, 3.9rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .form-title .accent { color: var(--red); }
+
+    .form-sub {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(244,244,244,0.82);
+      max-width: 380px;
+      margin-bottom: 1.8rem;
+    }
+
+    .project-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 16px;
+      padding: 18px 18px;
+      outline: none;
+      transition: border-color .2s ease, background .2s ease;
+      border-radius: 0;
+      cursor: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(244,244,244,0.42);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: rgba(255,75,47,0.9);
+      background: rgba(255,75,47,0.03);
+    }
+
+    .form-select {
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ff4b2f' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      padding-right: 42px;
+    }
+
+    .form-select option {
+      background: #111;
+      color: var(--white);
+    }
+
+    .form-textarea {
+      min-height: 124px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 19px 20px;
+      background: var(--red);
+      color: var(--bg);
+      border: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: none;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .btn-submit:hover {
+      background: #ff593c;
+      transform: translateY(-1px);
+    }
+
+    .form-meta {
+      margin-top: 1.6rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .price-note {
+      font-size: 13px;
+      color: rgba(244,244,244,0.86);
+      letter-spacing: 0;
+      text-transform: none;
+      font-family: var(--body);
+    }
+
+    .booking-meta {
+      color: var(--red);
+      font-size: 13px;
+      letter-spacing: 0;
+      text-transform: none;
+      font-family: var(--body);
+      font-weight: 700;
+    }
+
+    .success-toast {
+      display: none;
+      margin-top: 1rem;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,184,0,0.28);
+      background: rgba(255,184,0,0.06);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
     .success-toast.show { display: block; }
+    .form-status { display: none; }
 
-    footer { padding: 3rem 4vw; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-copy { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-    .footer-cta { font-size: 11px; color: var(--red); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: gap 0.2s; }
-    .footer-cta:hover { gap: 14px; }
+    .bottom-bar {
+      margin-top: 4.6rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border-soft);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,75,47,0.72);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 19px;
+      height: 19px;
+      display: block;
+    }
+
+    .contact-text {
+      font-size: 15px;
+      line-height: 1.3;
+      font-family: var(--body);
+      color: rgba(244,244,244,0.92);
+      transition: color .2s ease;
+    }
+
+    .contact-item:hover .contact-text {
+      color: var(--yellow);
+    }
+
+    .copyright {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(244,244,244,0.72);
+    }
+
+    .copyright .brand-accent {
+      color: var(--red);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .reveal-delay-4 { transition-delay: .32s; }
+
+    @media (max-width: 1280px) {
+      nav {
+        grid-template-columns: 280px 1fr auto;
+      }
+      .nav-logo { width: 250px; }
+      .main-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-column, .middle-column, .form-column { padding-top: 0.8rem; }
+      .middle-column, .form-column { max-width: 760px; }
+    }
 
     @media (max-width: 900px) {
-      .process-grid { grid-template-columns: 1fr 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .lead-form-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .nav-links { display: none; }
-    }
-    @media (max-width: 600px) {
       body { cursor: auto; }
       #cursor, #cursor-ring { display: none; }
-      .process-grid, .form-row { grid-template-columns: 1fr; }
-      .hero-stats { gap: 2rem; }
-      .services-header, footer { flex-direction: column; align-items: flex-start; }
-      .contact-link { font-size: 16px; }
-      .contact-line { font-size: 14px; }
+      .page-shell { padding-inline: 1.2rem; }
+      nav {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 1rem;
+        padding: 1rem 0 1.2rem;
+      }
+      .nav-logo { width: 230px; }
+      .nav-links {
+        justify-content: flex-start;
+        gap: 1.6rem;
+        flex-wrap: wrap;
+      }
+      .nav-cta {
+        min-width: 0;
+        width: 100%;
+      }
+      .hero-headline { font-size: clamp(3rem, 13vw, 4.8rem); }
+      .btn-outline { min-width: 0; width: 100%; }
+      .bottom-bar {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+      .copyright { justify-content: flex-start; }
     }
-    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9000; opacity: 0.4; }
   </style>
 </head>
 <body>
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
+
   <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-track">
       <span class="ticker-item">Brand Identity</span>
       <span class="ticker-item">Visual Strategy</span>
       <span class="ticker-item">Campaign Design</span>
@@ -216,159 +659,228 @@
     </div>
   </div>
 
-  <nav>
-    <a href="#" class="nav-logo" aria-label="itch VISUALS home"><div class="logo-circle"><img src="logo.jpeg" alt="itch visuals logo"></div></a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact">Apply</a></li>
-    </ul>
-    <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start Your Brand Upgrade</button>
-  </nav>
+  <div class="page-shell">
+    <nav>
+      <a href="#" class="nav-logo" aria-label="itch VISUALS home">
+        <img src="logo.jpeg" alt="itch visuals logo" />
+      </a>
 
-  <section class="hero">
-    <div class="hero-eyebrow reveal">Performance Brand Design Studio — اتش فيجوالز</div>
-    <h1 class="hero-headline reveal reveal-delay-1"><div class="solid">WE TURN</div><div class="ghost">BRANDS INTO</div><div class="accent">PREMIUM EXPERIENCES.</div></h1>
-    <p class="hero-sub reveal reveal-delay-2">Built for businesses that want to charge more — and look like it.</p>
-    <div class="hero-actions reveal reveal-delay-3"><a href="#contact" class="btn-primary"><span>Start Your Brand Upgrade →</span></a><a href="#positioning" class="btn-ghost">See Our Positioning</a></div>
-    <div class="hero-stats reveal reveal-delay-4">
-      <div class="stat-item"><div class="stat-number">140<sup>+</sup></div><div class="stat-label">Brands Built</div></div>
-      <div class="stat-item"><div class="stat-number">6<sup>yr</sup></div><div class="stat-label">In the Game</div></div>
-      <div class="stat-item"><div class="stat-number">3x</div><div class="stat-label">Perceived Value Lift</div></div>
-    </div>
-  </section>
+      <ul class="nav-links">
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#positioning">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-  <section class="positioning" id="positioning">
-    <div class="services-header">
-      <div>
-        <div class="section-eyebrow reveal">Positioning</div>
-        <h2 class="services-title reveal reveal-delay-1">NOT FOR<br><span class="ghost">EVERYONE</span></h2>
-      </div>
-      <p class="services-note reveal reveal-delay-2">We work with brands ready to upgrade how they look, feel, and sell.</p>
-    </div>
-    <div class="service-row reveal"><span class="service-num">01</span><div class="service-info"><div class="service-name">Premium Positioning</div><div class="service-desc">We build brands that feel sharper, more expensive, and instantly more trusted.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal reveal-delay-1"><span class="service-num">02</span><div class="service-info"><div class="service-name">Perceived Value</div><div class="service-desc">Design that helps your business justify higher prices before the first sales call even starts.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal reveal-delay-2"><span class="service-num">03</span><div class="service-info"><div class="service-name">Selective Growth</div><div class="service-desc">Not built for everyone. Built for founders serious about showing up like a premium brand.</div></div><span class="service-arrow">↗</span></div>
-  </section>
+      <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        <span>Start Your Brand Upgrade</span>
+        <span>↗</span>
+      </button>
+    </nav>
 
-  <section class="services" id="services">
-    <div class="services-header"><div><div class="section-eyebrow reveal">What We Do</div><h2 class="services-title reveal reveal-delay-1"><span class="solid">OUR</span><br><span class="ghost">SERVICES</span></h2></div><p class="services-note reveal reveal-delay-2">Everything your brand needs to look stronger, sell harder, and feel premium.</p></div>
-    <div class="service-row reveal"><span class="service-num">01</span><div class="service-info"><div class="service-name">Brand Identity</div><div class="service-desc">Logo systems, visual language, guidelines, and identity direction built for long-term positioning.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal reveal-delay-1"><span class="service-num">02</span><div class="service-info"><div class="service-name">Performance Marketing Assets</div><div class="service-desc">Ad creatives, landing visuals, and campaign-ready assets designed to convert — not just decorate.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal reveal-delay-2"><span class="service-num">03</span><div class="service-info"><div class="service-name">Social Media Design</div><div class="service-desc">Scroll-stopping systems for brands that want consistency, clarity, and a stronger first impression.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal reveal-delay-3"><span class="service-num">04</span><div class="service-info"><div class="service-name">Motion &amp; Video Graphics</div><div class="service-desc">Cinematic motion pieces and short-form visuals that give your brand more presence and memorability.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal reveal-delay-4"><span class="service-num">05</span><div class="service-info"><div class="service-name">Web Design &amp; Landing Pages</div><div class="service-desc">High-converting web experiences built to match your positioning and push serious clients to act.</div></div><span class="service-arrow">↗</span></div>
-    <div class="service-row reveal"><span class="service-num">06</span><div class="service-info"><div class="service-name">Visual Strategy &amp; Consulting</div><div class="service-desc">Clear direction for founders who need sharper positioning, stronger visuals, and better market presence.</div></div><span class="service-arrow">↗</span></div>
-  </section>
+    <main class="main-grid">
+      <section class="column hero-column">
+        <h1 class="hero-headline reveal reveal-delay-1">
+          <span class="solid">WE TURN</span>
+          <span class="solid">BRANDS INTO</span>
+          <span class="accent">PREMIUM</span>
+          <span class="accent">EXPERIENCES.</span>
+        </h1>
 
-  <section class="process" id="process">
-    <div class="process-header"><div class="section-eyebrow reveal">How It Works</div><h2 class="process-title reveal reveal-delay-1">THE PROCESS</h2></div>
-    <div class="process-grid">
-      <div class="process-step reveal"><div class="step-ghost-num">01</div><div class="step-badge">Step 01 — Discovery</div><div class="step-title">Brand Immersion &amp; Strategy</div><p class="step-desc">We dive into your offer, audience, competitors, and current brand perception before designing a single pixel.</p></div>
-      <div class="process-step reveal reveal-delay-1"><div class="step-ghost-num">02</div><div class="step-badge">Step 02 — Concept</div><div class="step-title">Creative Direction &amp; Concepts</div><p class="step-desc">Bold visual routes built around positioning, not trends — so the final direction actually elevates your business.</p></div>
-      <div class="process-step reveal reveal-delay-2"><div class="step-ghost-num">03</div><div class="step-badge">Step 03 — Execution</div><div class="step-title">Design &amp; Production</div><p class="step-desc">From identity systems to campaign assets, every piece is crafted to make your brand look sharper and more premium.</p></div>
-      <div class="process-step reveal reveal-delay-3"><div class="step-ghost-num">04</div><div class="step-badge">Step 04 — Delivery</div><div class="step-title">Launch &amp; Handoff</div><p class="step-desc">Clean delivery, organized files, and a brand system built to support real growth after launch.</p></div>
-    </div>
-  </section>
+        <div class="hero-divider reveal reveal-delay-2"></div>
 
-  <section class="testimonials" id="work">
-    <div class="testimonials-header"><div><div class="section-eyebrow reveal">Client Words</div><h2 class="testimonials-title reveal reveal-delay-1">WHAT THEY<br>SAY.</h2></div></div>
-    <div class="testimonials-grid">
-      <div class="tcard reveal"><div class="tcard-quote">&quot;</div><div class="tcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="tcard-text">Their work didn’t just make us look better. It made our brand feel worth paying more for.</p><div class="tcard-author"><div class="tcard-avatar">RK</div><div><div class="tcard-name">Rayan Khalil</div><div class="tcard-role">Founder — Khalil Co.</div></div></div></div>
-      <div class="tcard reveal reveal-delay-1"><div class="tcard-quote">&quot;</div><div class="tcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="tcard-text">They don’t just design. They position your business to look more premium and sell with more confidence.</p><div class="tcard-author"><div class="tcard-avatar">SM</div><div><div class="tcard-name">Sara Mahmoud</div><div class="tcard-role">CMO — Nour Retail</div></div></div></div>
-      <div class="tcard reveal reveal-delay-2"><div class="tcard-quote">&quot;</div><div class="tcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="tcard-text">The final output gave us a stronger presence, clearer perception, and a much more elevated brand feel.</p><div class="tcard-author"><div class="tcard-avatar">AJ</div><div><div class="tcard-name">Adam Jarrar</div><div class="tcard-role">CEO — Vertex Labs</div></div></div></div>
-    </div>
-  </section>
+        <p class="hero-sub reveal reveal-delay-2">
+          Built for businesses that want to <strong>charge more</strong> — and look like it.
+        </p>
 
-  <section class="lead-form-section" id="contact">
-    <div class="lead-form-grid">
-      <div class="lead-form-left">
-        <div class="section-eyebrow reveal">Apply to Work With Us</div>
-        <h2 class="lead-form-headline reveal reveal-delay-1">LET'S BUILD<br><span class="ghost">SOMETHING</span><br>ICONIC.</h2>
-        <p class="lead-form-sub reveal reveal-delay-2">For founders and businesses ready to upgrade how they look, feel, and sell.</p>
-        <p class="price-note reveal reveal-delay-2">Projects start from $500</p>
-        <p class="booking-meta reveal reveal-delay-3">Currently booking 2 projects per month.</p>
-        <ul class="trust-list reveal reveal-delay-3">
-          <li>Response within 24 hours, every time</li>
-          <li>Project-based pricing — no retainer lock-in</li>
-          <li>Bilingual communication: English &amp; Arabic</li>
-          <li>Built for brands serious about premium positioning</li>
-          <li>Clear scope, clear direction, no fluff</li>
-        </ul>
-        <div class="contact-block reveal reveal-delay-4">
-          <p class="contact-note">Reach out directly if you already know what you need.</p>
-          <div class="contact-list">
-            <div class="contact-line">
-              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6.75C3 5.7835 3.7835 5 4.75 5H19.25C20.2165 5 21 5.7835 21 6.75V17.25C21 18.2165 20.2165 19 19.25 19H4.75C3.7835 19 3 18.2165 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 7L11.0378 11.9033C11.6301 12.3475 12.3699 12.3475 12.9622 11.9033L19.5 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <a class="contact-link" href="mailto:Itchvisuals@gmail.com">Itchvisuals@gmail.com</a>
+        <a href="#contact" class="btn-outline reveal reveal-delay-3">
+          <span>Start Your Brand Upgrade</span>
+          <span>↗</span>
+        </a>
+      </section>
+
+      <section class="column middle-column" id="positioning">
+        <div class="mini-eyebrow reveal">Not For</div>
+        <h2 class="stack-title reveal reveal-delay-1">Everyone.</h2>
+        <div class="stack-divider reveal reveal-delay-2"></div>
+        <p class="stack-sub reveal reveal-delay-2">
+          We only work with brands ready to level up.
+        </p>
+
+        <div class="position-list reveal reveal-delay-3">
+          <article class="position-item">
+            <div class="position-num">01</div>
+            <div>
+              <h3 class="position-name">Premium Positioning</h3>
+              <p class="position-desc">We build brands that look expensive — and feel worth it.</p>
             </div>
-            <div class="contact-line">
-              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></span>
-              <a class="contact-link" href="https://instagram.com/itchvisuals" target="_blank" rel="noopener noreferrer">@itchvisuals</a>
+          </article>
+
+          <article class="position-item">
+            <div class="position-num">02</div>
+            <div>
+              <h3 class="position-name">Perceived Value</h3>
+              <p class="position-desc">Design that makes people trust you before you even speak.</p>
             </div>
-          </div>
+          </article>
+
+          <article class="position-item">
+            <div class="position-num">03</div>
+            <div>
+              <h3 class="position-name">Selective Clients</h3>
+              <p class="position-desc">We don’t work with everyone — only brands ready to grow.</p>
+            </div>
+          </article>
         </div>
-      </div>
-      <div class="lead-form-right reveal reveal-delay-2">
-        <form id="projectForm" action="https://formsubmit.co/Itchvisuals@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New application — itch VISUALS">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="https://itchvisuals.me/?submitted=1#contact">
-          <input type="text" name="_honey" style="display:none">
-          <div class="form-row">
-            <div class="form-group"><label class="form-label" for="fname">Full Name</label><input class="form-input" id="fname" name="Full Name" type="text" placeholder="Your name" required></div>
-            <div class="form-group"><label class="form-label" for="femail">Email</label><input class="form-input" id="femail" name="Email" type="email" placeholder="you@company.com" required></div>
-          </div>
-          <div class="form-group"><label class="form-label" for="fcompany">Company / Brand</label><input class="form-input" id="fcompany" name="Company / Brand" type="text" placeholder="Your company name"></div>
-          <div class="form-group"><label class="form-label" for="fservice">Service Needed</label><select class="form-select" id="fservice" name="Service Needed" required><option value="" disabled selected>Select a service</option><option>Brand Identity</option><option>Performance Marketing Assets</option><option>Social Media Design</option><option>Motion &amp; Video Graphics</option><option>Web Design &amp; Landing Pages</option><option>Visual Strategy &amp; Consulting</option><option>Full Brand Package</option></select></div>
-          <div class="form-group"><label class="form-label" for="fbudget">Project Budget</label><select class="form-select" id="fbudget" name="Project Budget" required><option value="" disabled selected>Select a budget range</option><option>$500 – $1,000</option><option>$1,000 – $2,500</option><option>$2,500 – $5,000</option><option>$5,000 – $10,000</option><option>$10,000+</option></select></div>
-          <div class="form-group"><label class="form-label" for="fmessage">Tell Us About Your Project</label><textarea class="form-textarea" id="fmessage" name="Project Details" placeholder="Describe your project, goals, timeline…" required></textarea></div>
-          <button type="submit" class="btn-submit"><span id="submitText"><span>Submit Application</span><span>→</span></span></button>
+      </section>
+
+      <section class="column form-column" id="contact">
+        <div class="form-eyebrow reveal">Let’s Work Together</div>
+        <h2 class="form-title reveal reveal-delay-1">
+          <span>Submit Your</span><br />
+          <span class="accent">Application.</span>
+        </h2>
+        <p class="form-sub reveal reveal-delay-2">
+          Tell us about your project and let’s create something exceptional.
+        </p>
+
+        <form id="projectForm" class="project-form reveal reveal-delay-2" action="https://formsubmit.co/Itchvisuals@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New application — itch VISUALS" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://itchvisuals.me/?submitted=1#contact" />
+          <input type="text" name="_honey" style="display:none" />
+
+          <input class="form-input" id="fname" name="Full Name" type="text" placeholder="Name" required />
+          <input class="form-input" id="femail" name="Email" type="email" placeholder="Email" required />
+
+          <select class="form-select" id="fservice" name="Service Needed" required>
+            <option value="" disabled selected>Project Type</option>
+            <option>Brand Identity</option>
+            <option>Performance Marketing Assets</option>
+            <option>Social Media Design</option>
+            <option>Motion &amp; Video Graphics</option>
+            <option>Web Design &amp; Landing Pages</option>
+            <option>Visual Strategy &amp; Consulting</option>
+            <option>Full Brand Package</option>
+          </select>
+
+          <textarea class="form-textarea" id="fmessage" name="Project Details" placeholder="Describe your project, goals, timeline..." required></textarea>
+
+          <button type="submit" class="btn-submit">
+            <span id="submitText">
+              <span>Submit Application</span>
+              <span>→</span>
+            </span>
+          </button>
+
           <div class="success-toast" id="successToast">PROJECT LOCKED IN — WE’LL REVIEW &amp; GET BACK TO YOU WITHIN 24H.</div>
           <p class="form-status" id="formStatus"></p>
         </form>
+
+        <div class="form-meta reveal reveal-delay-3">
+          <p class="price-note">Projects start from $500</p>
+          <p class="booking-meta">Currently booking 2 projects per month.</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="bottom-bar">
+      <div class="contact-strip reveal reveal-delay-3">
+        <a class="contact-item" href="mailto:Itchvisuals@gmail.com">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6.75C3 5.7835 3.7835 5 4.75 5H19.25C20.2165 5 21 5.7835 21 6.75V17.25C21 18.2165 20.2165 19 19.25 19H4.75C3.7835 19 3 18.2165 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 7L11.0378 11.9033C11.6301 12.3475 12.3699 12.3475 12.9622 11.9033L19.5 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="contact-text">itchvisuals@gmail.com</span>
+        </a>
+
+        <a class="contact-item" href="https://instagram.com/itchvisuals" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </span>
+          <span class="contact-text">@itchvisuals</span>
+        </a>
+      </div>
+
+      <div class="copyright reveal reveal-delay-4">
+        <span>© 2026</span>
+        <span class="brand-accent">ITCHVISUALS.</span>
+        <span>ALL RIGHTS RESERVED.</span>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <a href="#" class="footer-logo" aria-label="itch VISUALS home"><div class="logo-circle"><img src="logo.jpeg" alt="itch visuals logo"></div></a>
-    <span class="footer-copy">© 2025 itch VISUALS — اتش فيجوالز. All rights reserved.</span>
-    <a href="mailto:Itchvisuals@gmail.com" class="footer-cta">Email Us <span>→</span></a>
-  </footer>
+    <section class="services-hidden" id="services"></section>
+    <section class="process-hidden" id="process"></section>
+    <section class="testimonials-hidden" id="work"></section>
+  </div>
 
   <script>
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursor-ring');
     let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
     const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
     if (coarsePointer) {
-      document.body.style.cursor = 'auto'; cursor.style.display = 'none'; ring.style.display = 'none';
+      document.body.style.cursor = 'auto';
+      cursor.style.display = 'none';
+      ring.style.display = 'none';
     } else {
-      document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
-      function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+      });
+
+      function animateRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      }
       animateRing();
     }
+
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
     }, { threshold: 0.12 });
+
     reveals.forEach((el) => observer.observe(el));
+
     const form = document.getElementById('projectForm');
     const submitText = document.getElementById('submitText');
     const successToast = document.getElementById('successToast');
-    if (form) { form.addEventListener('submit', () => { submitText.innerHTML = '<span>Submitting...</span>'; }); }
+
+    if (form) {
+      form.addEventListener('submit', () => {
+        submitText.innerHTML = '<span>Submitting...</span>';
+      });
+    }
+
     const params = new URLSearchParams(window.location.search);
     if (params.get('submitted') === '1' && successToast) {
       successToast.classList.add('show');
       const contactSection = document.getElementById('contact');
-      if (contactSection) { contactSection.scrollIntoView({ behavior: 'smooth' }); }
-      if (submitText) { submitText.innerHTML = '<span>Application Sent</span><span>✓</span>'; }
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (submitText) {
+        submitText.innerHTML = '<span>Application Sent</span><span>✓</span>';
+      }
       window.history.replaceState({}, document.title, '/#contact');
     }
+
     window.addEventListener('load', () => {
-      document.querySelectorAll('.hero .reveal').forEach((el, i) => { setTimeout(() => el.classList.add('visible'), 200 + i * 150); });
+      document.querySelectorAll('.hero-column .reveal, .middle-column .reveal, .form-column .reveal, .bottom-bar .reveal').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), 120 + i * 80);
+      });
     });
   </script>
 </body>
